@@ -1,9 +1,7 @@
 package br.com.dev.thiagomds.consumer_catalogo_produtos.model;
 
 import br.com.dev.thiagomds.consumer_catalogo_produtos.enums.EventType;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConvertedEnum;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import org.springframework.data.annotation.Id;
 
 @DynamoDBTable(tableName = "product-events")
@@ -30,6 +28,7 @@ public class ProductEventLog {
     @DynamoDBAttribute(attributeName = "ttl")
     private long ttl;
 
+    @DynamoDBHashKey(attributeName = "pk")
     public String getPk() {
         return this.productEventKey != null ? this.productEventKey.getPk() : null;
     }
@@ -39,6 +38,18 @@ public class ProductEventLog {
             this.productEventKey = new ProductEventKey();
         }
         this.productEventKey.setPk(pk);
+    }
+
+    @DynamoDBRangeKey(attributeName = "sk")
+    public String getSk() {
+        return this.productEventKey != null ? this.productEventKey.getSk() : null;
+    }
+
+    public void setSk(String sk) {
+        if(this.productEventKey == null) {
+            this.productEventKey = new ProductEventKey();
+        }
+        this.productEventKey.setPk(sk);
     }
 
     public EventType getEventType() {
