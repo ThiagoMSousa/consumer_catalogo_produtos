@@ -49,7 +49,7 @@ public class ProductEventLog {
         if(this.productEventKey == null) {
             this.productEventKey = new ProductEventKey();
         }
-        this.productEventKey.setPk(sk);
+        this.productEventKey.setSk(sk);
     }
 
     public EventType getEventType() {
