@@ -67,7 +67,7 @@ public class ProductEventConsumer {
         productEventLog.setSk(envelope.getEventType() + "_" + timestamp);
         productEventLog.setEventType(envelope.getEventType());
         productEventLog.setProductId(productEvent.getProductId());
-        productEventLog.setUsername(productEventLog.getUsername());
+        productEventLog.setUsername(productEvent.getUsername());
         productEventLog.setTimestamp(timestamp);
         productEventLog.setTtl(Instant.now().plus(
                 Duration.ofMinutes(10)).getEpochSecond());
