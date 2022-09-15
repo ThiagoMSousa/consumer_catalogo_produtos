@@ -29,6 +29,14 @@ public class ProductEventLogController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/events/{code}")
+    public List<ProductEventLogDto> findByCode(@PathVariable String code) {
+        return productEventLogRepository.findAllByPk(code)
+                .stream()
+                .map(ProductEventLogDto::new)
+                .collect(Collectors.toList());
+    }
+
     @GetMapping("/events/{code}/{event}")
     public List<ProductEventLogDto> findByCodeAndEventType(@PathVariable String code,
                                                            @PathVariable String event) {
