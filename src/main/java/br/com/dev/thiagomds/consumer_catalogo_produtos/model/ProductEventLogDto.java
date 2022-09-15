@@ -8,6 +8,8 @@ public class ProductEventLogDto {
     private final EventType eventType;
     private final long productId;
     private final String username;
+
+    private final String messageId;
     private final long timestamp;
 
     public ProductEventLogDto(ProductEventLog productEventLog) {
@@ -15,6 +17,7 @@ public class ProductEventLogDto {
         this.eventType = productEventLog.getEventType();
         this.productId = productEventLog.getProductId();
         this.username = productEventLog.getUsername();
+        this.messageId = productEventLog.getMessageId();
         this.timestamp = productEventLog.getTimestamp();
     }
 
@@ -32,6 +35,10 @@ public class ProductEventLogDto {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getMessageId() {
+        return messageId;
     }
 
     public long getTimestamp() {
